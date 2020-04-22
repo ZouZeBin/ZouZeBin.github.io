@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zouzebin.github.io">
-  <title>Category: JAVA | ZouZeBin&#39; Blog</title>
+  <title>GUI | ZouZeBin&#39; Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZouZeBin&#39; Blog">
-<meta property="og:url" content="https://zouzebin.github.io/categories/%E9%9A%8F%E7%AC%94/JAVA/index.html">
+  <meta name="description" content="java-day40GUI事件监听总结1.AWT事件模型概述使用AWT或者Swing中的容器、组件和布局管理器就可以构建出图形界面,但是这时候该界面还并不能和用户进行交换,因为图形界面中的组件还没有添加事件监听器,所以还不能对用户在界面中的操作进行处理。 在Java事件模型中,必须存在事件对象、事件源、事件监听器三部分。事件对象是表示发生了什么事件,事件源表示是谁产生的这个事件对象,事件处理器接收">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GUI">
+<meta property="og:url" content="https://zouzebin.github.io/2020/04/22/GUI/index.html">
 <meta property="og:site_name" content="ZouZeBin&#39; Blog">
+<meta property="og:description" content="java-day40GUI事件监听总结1.AWT事件模型概述使用AWT或者Swing中的容器、组件和布局管理器就可以构建出图形界面,但是这时候该界面还并不能和用户进行交换,因为图形界面中的组件还没有添加事件监听器,所以还不能对用户在界面中的操作进行处理。 在Java事件模型中,必须存在事件对象、事件源、事件监听器三部分。事件对象是表示发生了什么事件,事件源表示是谁产生的这个事件对象,事件处理器接收">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-22T06:53:21.000Z">
+<meta property="article:modified_time" content="2020-04-22T06:55:35.281Z">
 <meta property="article:author" content="邹泽斌">
+<meta property="article:tag" content="JAVA">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZouZeBin&#39; Blog" type="application/atom+xml">
@@ -176,36 +181,151 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-GUI" class="article article-type-post " itemscope itemprop="blogPost">
   
+  <div class="article-inner">
+    
+
+      <header class="article-header">
+        
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/22/GUI/" class="archive-article-date">
-  	<time datetime="2020-04-22T06:53:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/22/GUI/">GUI</a>
+    <h1 class="article-title" itemprop="name">
+      GUI
     </h1>
   
 
-        <div class="article-info info-on-right">
+	
+	<a href="/2020/04/22/GUI/" class="archive-article-date">
+  	<time datetime="2020-04-22T06:53:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
+</a>
+	
+	<!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
           
+        <!-- 添加完成 -->
+    
+	
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+	
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java-day40"><a href="#java-day40" class="headerlink" title="java-day40"></a>java-day40</h1><h1 id="GUI事件监听总结"><a href="#GUI事件监听总结" class="headerlink" title="GUI事件监听总结"></a>GUI事件监听总结</h1><h2 id="1-AWT事件模型概述"><a href="#1-AWT事件模型概述" class="headerlink" title="1.AWT事件模型概述"></a>1.AWT事件模型概述</h2><p>使用AWT或者Swing中的容器、组件和布局管理器就可以构建出图形界面,但是这时候该界面还并不能和用户进行交换,因为图形界面中的组件还没有添加事件监听器,所以还不能对用户在界面中的操作进行处理。</p>
+<p>在Java事件模型中,必须存在事件对象、事件源、事件监听器三部分。事件对象是表示发生了什么事件,事件源表示是谁产生的这个事件对象,事件处理器接收到事件对象后,可以对这个事件进行处理。<br>    <strong>事件模型中的三要素</strong>:事件对象、事件源、事件监听器<br>    <code>注:不光是GUI中,在java的其他地方也会使用到事件模型。</code></p>
+<p> 在Java中一个事件监听器就是指事件发生时被通知的对象。它有<strong>两个要求</strong>：</p>
+<p>首先,为了可以接收到特殊类型事件的通知,它必须在事件源中已经注册；</p>
+<p>其次,它必须实现接收和处理事件的方法。</p>
+<h4 id="例如"><a href="#例如" class="headerlink" title="例如:"></a>例如:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//btn就是事件源</span></span><br><span class="line">JButton btn = <span class="keyword">new</span> JButton(<span class="string">"测试"</span>);</span><br><span class="line"><span class="comment">//给事件源btn注册事件监听器</span></span><br><span class="line"><span class="comment">//这里使用了匿名内部类对象作为监听器</span></span><br><span class="line">btn.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">    <span class="comment">//监听器中实现接收和处理事件的方法</span></span><br><span class="line">    <span class="comment">//ActionEvent类型的引用e指向的就是按钮上所产生的事件对象</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">XxxxListener 监听器接口</span><br><span class="line">    事件源.addXxxxListener(<span class="keyword">new</span> XxxxListener()&#123;</span><br><span class="line">        <span class="comment">//实现接口中的抽象方法</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在事件源上注册好监听器之后,只要是在该事件源上产生了特定的事件对象,事件监听器就会自动被触发,并执行相应的方法处理。</p>
+<p>例如:在上面的例子基础上<br>            当我们使用鼠标点击btn这个按钮之后,产生了一个鼠标点击的事件对象(引用e会指向这个事件对象),然后注册的事件监听器会自动触发(这里的匿名内部类对象就是注册的监听器),并调用指定方法actionPerformed,对产生的事件进行处理。</p>
+<h2 id="2-事件源、事件对象、事件监听器"><a href="#2-事件源、事件对象、事件监听器" class="headerlink" title="2.事件源、事件对象、事件监听器"></a>2.事件源、事件对象、事件监听器</h2><h4 id="1-事件源"><a href="#1-事件源" class="headerlink" title="1)事件源"></a>1)事件源</h4><p>AWT和Swing中的几乎所有的组件都可以作为事件源,注意容器也是一种组件。<br>例如:窗口、面板、按钮、输入框、下拉类别的菜单、单选复选框、标签、滚动条、进度条等等<br>例如:AWT和Swing中的组件都是java.awt.Component类的子类型,Component类中定义了很多所有组件都可以调用的方法,这些方法中有很多是这种形式的:addXxxxListener<br>这些方法就是给组件中注册事件监听器的方法,只是<strong>不同类型的事件</strong>需要使用<strong>不同类型的监听器</strong>来监听,所以不同的addXxxxListener方法就表示给组件添加相应的事件监听器。(Xxxx代表事件的类型)</p>
+<h4 id="2-事件对象及其对应的处理接口-也就是事件监听器"><a href="#2-事件对象及其对应的处理接口-也就是事件监听器" class="headerlink" title="2)事件对象及其对应的处理接口(也就是事件监听器)"></a>2)事件对象及其对应的处理接口(也就是事件监听器)</h4><p>java.util.EventObject类</p>
+<p>java.awt.Event类</p>
+<p>java.awt.AWTEvent类</p>
+<p>java.awt.event.ActionEvent类</p>
+<p>java.awt.event.AdjustmentEvent类</p>
+<p>java.awt.event.ComponentEvent类</p>
+<p>java.awt.event.ContainerEvent类</p>
+<p>java.awt.event.WindowEvent类</p>
+<p>java.awt.event.FocusEvent类</p>
+<p>java.awt.event.ItemEvent类</p>
+<p>java.awt.event.TextEvent类</p>
+<p>java.awt.event.KeyEvent类</p>
+<p>java.awt.event.MouseEvent类</p>
+<h2 id="3-适配器-Adapter"><a href="#3-适配器-Adapter" class="headerlink" title="3.适配器 Adapter"></a>3.适配器 Adapter</h2><p>很多监听器接口中都定义了很多个方法,每个方法负责处理一种产生事件的情况,我们编写实现类的时候就需要实现监听器接口中的所有方法,但是很多时候我们其实只需要调用接口中的一个方法,但是由于语法要求我们还是必须把接口中的所有抽象全都实现了。</p>
+<p><strong>例如: 点击按钮输出hello world</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">JButton btn = <span class="keyword">new</span> JButton(<span class="string">"test"</span>);</span><br><span class="line">btn.addMouseListener(<span class="keyword">new</span> MouseListener() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseClicked</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mousePressed</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseExited</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseEntered</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用了MouseListener接口的匿名内部类对象,并且五个方法全都实现了,但是其实我们只需要调用mouseClicked方法.</p>
+<p>为了处理这个代码中出现的情况,又引入了接口的适配器类：XxxxAdapter</p>
+<p>MouseAdapter实现了MouseListener, MouseWheelListener, MouseMotionListener三个接口,并且把接口中抽象方法全都进行了空实现,将来我们只需要创建MouseAdapter类的匿名内部类然后重写我们想调用的方法即可<br><strong>例如: 点击按钮输出hello world</strong>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JButton btn = <span class="keyword">new</span> JButton(<span class="string">"test"</span>);</span><br><span class="line">btn.addMouseListener(<span class="keyword">new</span> MouseAdapter() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseClicked</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<pre><code>除了MouseAdapter实现MouseListener, MouseWheelListener, MouseMotionListener三个接口,是一个适配器类之外,还有其他的一些适配器类:</code></pre><p>WindowAdapter适配器类实现了WindowListener, WindowStateListener, WindowFocusListener三个接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ComponentAdapter适配器类实现了ComponentListener接口</span><br><span class="line"></span><br><span class="line">ContainerAdapter适配器类实现了ContainerListener接口</span><br><span class="line"></span><br><span class="line">FocusAdapter适配器类实现了FocusListener接口</span><br><span class="line"></span><br><span class="line">KeyAdapter适配器类实现了KeyListener接口</span><br><span class="line"></span><br><span class="line">MouseMotionAdapter适配器类实现了MouseMotionListener接口</span><br><span class="line"></span><br><span class="line">HierarchyBoundsAdapter适配器类实现了HierarchyBoundsListener接口</span><br></pre></td></tr></table></figure>
+<h2 id="4-定时器Timer"><a href="#4-定时器Timer" class="headerlink" title="4.定时器Timer"></a>4.定时器Timer</h2><p>javax.swing.Timer类,可以定时触发事件（ActionEvent）,调用监听器的指定方法。</p>
+<p><strong>例如:TimerTest1.java  TimerTest2.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">JFrame jFrame = <span class="keyword">new</span> JFrame();</span><br><span class="line">JPanel panel = <span class="keyword">new</span> JPanel();</span><br><span class="line"></span><br><span class="line">JPanel north = <span class="keyword">new</span> JPanel();</span><br><span class="line">JButton startBtn = <span class="keyword">new</span> JButton(<span class="string">"开始"</span>);</span><br><span class="line">JButton endBtn = <span class="keyword">new</span> JButton(<span class="string">"停止"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> Canvas canvas = <span class="keyword">new</span> Canvas();</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> Timer timer = <span class="keyword">new</span> Timer(<span class="number">500</span>,<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(count*<span class="number">10</span>&gt;=canvas.getWidth())&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        Graphics g = canvas.getGraphics();</span><br><span class="line">        g.drawLine(count*<span class="number">10</span>, <span class="number">0</span>, count*<span class="number">10</span>, canvas.getWidth());</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">startBtn.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">        timer.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">endBtn.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">        timer.stop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">north.add(startBtn);</span><br><span class="line">north.add(endBtn);</span><br><span class="line"></span><br><span class="line">panel.setLayout(<span class="keyword">new</span> BorderLayout());</span><br><span class="line">panel.add(canvas);</span><br><span class="line"></span><br><span class="line">jFrame.add(north,BorderLayout.NORTH);</span><br><span class="line">jFrame.add(panel);</span><br><span class="line"></span><br><span class="line">jFrame.setSize(<span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">jFrame.setLocation(<span class="number">700</span>, <span class="number">300</span>);</span><br><span class="line">jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">jFrame.setVisible(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-让当前类实现监听器接口"><a href="#5-让当前类实现监听器接口" class="headerlink" title="5.让当前类实现监听器接口"></a>5.让当前类实现监听器接口</h2><p><strong>当前对象this就成为了监听器对象</strong></p>
+<p>例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">JFrame</span> <span class="keyword">implements</span> <span class="title">ActionListener</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> JPanel jPanel;</span><br><span class="line">    <span class="keyword">private</span> JButton btn;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        setBounds(<span class="number">700</span>, <span class="number">500</span>, <span class="number">500</span>, <span class="number">500</span>);</span><br><span class="line">        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        setResizable(<span class="keyword">false</span>);</span><br><span class="line">        initComponet();</span><br><span class="line">        setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initComponet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//初始化组件</span></span><br><span class="line">        jPanel = <span class="keyword">new</span> JPanel();</span><br><span class="line">        btn = <span class="keyword">new</span> JButton(<span class="string">"测试"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置布局管理器并添加组件</span></span><br><span class="line">        jPanel.add(btn);</span><br><span class="line"></span><br><span class="line">        add(jPanel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//给组件添加事件监听器</span></span><br><span class="line">        btn.addActionListener(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+	
+	
+	
+	  <div class="declare">
+	    <strong>本文作者：</strong>
+	    
+	      邹泽斌
+	    
+	    <br>
+	    <strong>本文链接：</strong>
+	    https://zouzebin.github.io/2020/04/22/GUI/
+	    <br>
+	    <strong>版权声明：</strong>
+	    本作品为
+	    <a rel="license" href="">斌哥版权 如有雷同 纯属虚构</a>
+	    斌哥许可转载，转载请注明出处！
+	    
+	  </div>
+	
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -217,7 +337,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -238,70 +358,135 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zouzebin.github.io/2020/04/22/GUI/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/22/%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2020-04-22T05:36:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/04/22/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/22/%E9%9B%86%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">集合</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/22/%E9%9B%86%E5%90%88/">集合</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
+
+  
+      <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: 'your clientID',
+  clientSecret: 'your clientSecret',
+  repo: 'git_comment',
+  owner: 'findtheonlyway',
+  admin: ['erbiduo'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+  
+
 
 
           </div>
@@ -356,10 +541,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
