@@ -308,6 +308,154 @@
 
 
   
+    <article id="post-线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/22/%E7%BA%BF%E7%A8%8B/">线程</a>
+    </h1>
+  
+
+	
+	<a href="/2020/04/22/%E7%BA%BF%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-04-22T05:20:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
+</a>
+	
+	<!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+    
+	
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="并发访问问题"><a href="#并发访问问题" class="headerlink" title="并发访问问题"></a>并发访问问题</h2><p>在代码中，如果有多个线程，同时去访问一段相关的代码或者一个共享的数据，那么这时候就可能出现并发访问的问题。</p>
+<p>经常会这样进行描述：<br>        例如：一个方法，在多线程并发访问的环境下，是否有线程安全的问题<br>        例如：一个共享数据，在多线程并发访问的环境下，是否有线程安全的问题</p>
+<p>如果一段代码，在多线程并发访问的环境下，是线程安全的，那么这段代码就称为【线程安全】的代码</p>
+<p>如果一段代码，在多线程并发访问的环境下，不是线程安全的，那么这段代码就称为【非线程安全】的代码</p>
+<p>例如：之前学习的ArrayList和LinkedList在多线程环境下，对集合中的数据进行操作的代码，是【非线程安全】代码，之前学习的Vector在多线程环境下，对集合中的数据进行操作的代码，是【线程安全】代码</p>
+<p><code>注意，产生并发访问问题最核心的原因在于，多个线程同时方法了一个【共享的数据】</code></p>
+<h4 id="代码中的哪些数据是【共享数据】"><a href="#代码中的哪些数据是【共享数据】" class="headerlink" title="代码中的哪些数据是【共享数据】"></a>代码中的哪些数据是【共享数据】</h4><p>数据都是使用变量接收的，所以只要看变量就可以了</p>
+<h5 id="1-方法中的局部变量"><a href="#1-方法中的局部变量" class="headerlink" title="1.方法中的局部变量"></a>1.方法中的局部变量</h5><p>【一定不是】共享数据，因为每次调用方法都会创建新的局部变量。</p>
+<h5 id="2-类中的非静态变量"><a href="#2-类中的非静态变量" class="headerlink" title="2.类中的非静态变量"></a>2.类中的非静态变量</h5><p>​    有可能是共享数据，也可是不是共享数据。<br>​    因为非静态变量是属于对象，每个对象中有这个非静态变量。所以最终得看代码中多个线程操作的这个非静态变量是不是同一个对象中的。</p>
+<h5 id="3-类中的静态变量"><a href="#3-类中的静态变量" class="headerlink" title="3.类中的静态变量"></a>3.类中的静态变量</h5><p>【一定是】共享数据，因为静态变量只有一份，所以对象共享的。</p>
+<h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><p>使用线程同步的方式，可以把原本“<strong>非线程安全</strong>”的代码，变成“<strong>线程安全</strong>”的代码。</p>
+<p>一个线程t1调用一个代码test方法，操作了一个变量a，另一个线程t2也调用了这个test方法，方法中也操作了这个变量，并且这个变量a还是t1和t2俩个线程共享的数据,因为在t1操作变量a的期间，t2也能操作这个变量a，那么这个变量a的值就变量无法预估，完全是根据t1和t2的随机抢夺cpu执行的情况来定的，那么这个test方法中的代码就是在多线程环境下非线程安全的代码。</p>
+<p>如果能让t1线程和t2线程，按照顺序依次的调用test方法来对变量a进程操作，那么就能保证t1线程在调用test方法操作变量a的时候，t2线程不会对变量a进行操作的，那么这时候无论t1线程在调用test方法操作变量a的期间，还是t2线程操作a的期间，都是线程安全的。因为一个线程在操作数据的时候，没有其他线程来捣乱。</p>
+<p>可以使用<code>synchronized</code>关键字来实现线程同步的效果。线程同步就是一块代码本来是多线程并发访问的（同时争夺执行权去执行代码）然后变成一个线程按照顺序依次访问。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zzb.day44;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest6</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest6 test = <span class="keyword">new</span> ThreadTest6();</span><br><span class="line">        Runnable r = test.<span class="keyword">new</span> MyRun();</span><br><span class="line"></span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(r,<span class="string">"t1"</span>);</span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(r,<span class="string">"\t t2"</span>);</span><br><span class="line"></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRun</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">5</span>;j++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">"：i="</span>+i);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h3><p>可以使用synchronized关键字来修饰方法，也可以来修饰代码块。</p>
+<p>synchronized可以代码块进行加锁，锁的是这个代码中的代码，加锁之后这个代码块中的代码只能让当前线程来执行，其他线程是不允许进来执行的，除非当前线程把这个代码块执行完了或者把锁给释放了，其他线程才有机会进来执行。</p>
+<p>使用synchronized关键字修饰代码快之后，需要指定一个对象来充当这把锁，把代码块中的代码给锁住。只有拿到这把锁的线程才有权利去执行这个加锁的代码块。</p>
+<p>这个时候一个线程想去执行加锁的代码块需要<strong>两个条件</strong>：</p>
+<ol>
+<li>线程抢夺到cp时间片的执行权。</li>
+<li>线程要拿到代码块上的这一把锁。</li>
+</ol>
+<p>这把锁就是允许进入到这个代码块的通行证。</p>
+<p>需要使用哪一个对象来充当这把锁，放置到加锁的代码块上面，作为可以进入到代码块中执行代码的通行证?</p>
+<p>可以使用java中的任何一个对象，来当做这把锁。但是如果想在多个线程执行代码的时候，达到线程同步的效果，那么就需要让这多个线程先去争取synchronized关键字所指定的对象，而这个对象就是充当了这把锁。</p>
+<p>使用synchronized关键来修饰类中的[<strong>非静态方法</strong>] 的时候，默认是使用<code>this对象</code>来当做这一把锁<br>使用synchronized关键来修饰类中的[ <strong>静态方法</strong>]的时候，默认是使用<code>当前类的Class对象</code>来当做这一把锁</p>
+<p>使用synchronized关键来修饰方法中的一个<strong>代码块</strong>，那么这时候需要我们<code>自己手动指定一个对象</code>来当做这个一把锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest7</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ThreadTest7 t = <span class="keyword">new</span> ThreadTest7();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//final NumTest num = new NumTest();</span></span><br><span class="line"></span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(<span class="string">"t1"</span>) &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                NumTest.test3();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(<span class="string">"\t t2"</span>) &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                NumTest.test4();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">NumTest</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> a;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认使用this来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认使用this来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认使用当【前类的Class对象】来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="comment">//每个类型的Class对象都是【有且只有一个】，并且这个对象是在类加载的时候自动生成。</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//默认使用当【前类的Class对象】来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="comment">//每个类型的Class对象都是【有且只有一个】，并且这个对象是在类加载的时候自动生成。</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+	
+	
+	
+	  <div class="declare" hidden="hidden"></div>
+	
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/22/%E7%BA%BF%E7%A8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
@@ -434,6 +582,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
             
             <div class="clearfix"></div>
