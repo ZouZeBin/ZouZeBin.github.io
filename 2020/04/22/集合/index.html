@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zouzebin.github.io">
-  <title>线程 | ZouZeBin&#39; Blog</title>
+  <title>集合 | ZouZeBin&#39; Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="并发访问问题在代码中，如果有多个线程，同时去访问一段相关的代码或者一个共享的数据，那么这时候就可能出现并发访问的问题。 经常会这样进行描述：        例如：一个方法，在多线程并发访问的环境下，是否有线程安全的问题        例如：一个共享数据，在多线程并发访问的环境下，是否有线程安全的问题 如果一段代码，在多线程并发访问的环境下，是线程安全的，那么这段代码就称为【线程安全】的代码 如果一">
+  <meta name="description" content="集合框架的总结数组与集合的对比数组：之前使用数组存储数据 数组只能存同意类型的数据  数组长度一旦确定不能改变  数组对象中基本没有可用调用的方法来操作数组  数组类型是使用 已有的类型+[] 组合而成集合：现在使用集合存储数据  集合中能存储任意类型的对象   集合的长度可以自动增长   集合对象本身有很多方法可以调用，来操作集合中的数据   集合是由API中定义好的接口和实现类组成的集合框架">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线程">
-<meta property="og:url" content="https://zouzebin.github.io/2020/04/22/%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:title" content="集合">
+<meta property="og:url" content="https://zouzebin.github.io/2020/04/22/%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="ZouZeBin&#39; Blog">
-<meta property="og:description" content="并发访问问题在代码中，如果有多个线程，同时去访问一段相关的代码或者一个共享的数据，那么这时候就可能出现并发访问的问题。 经常会这样进行描述：        例如：一个方法，在多线程并发访问的环境下，是否有线程安全的问题        例如：一个共享数据，在多线程并发访问的环境下，是否有线程安全的问题 如果一段代码，在多线程并发访问的环境下，是线程安全的，那么这段代码就称为【线程安全】的代码 如果一">
+<meta property="og:description" content="集合框架的总结数组与集合的对比数组：之前使用数组存储数据 数组只能存同意类型的数据  数组长度一旦确定不能改变  数组对象中基本没有可用调用的方法来操作数组  数组类型是使用 已有的类型+[] 组合而成集合：现在使用集合存储数据  集合中能存储任意类型的对象   集合的长度可以自动增长   集合对象本身有很多方法可以调用，来操作集合中的数据   集合是由API中定义好的接口和实现类组成的集合框架">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-22T05:20:49.000Z">
-<meta property="article:modified_time" content="2020-04-22T05:29:36.440Z">
+<meta property="article:published_time" content="2020-04-22T05:36:02.000Z">
+<meta property="article:modified_time" content="2020-04-22T05:40:57.485Z">
 <meta property="article:author" content="邹泽斌">
 <meta property="article:tag" content="JAVA">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-线程" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-集合" class="article article-type-post " itemscope itemprop="blogPost">
   
   <div class="article-inner">
     
@@ -194,13 +194,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      线程
+      集合
     </h1>
   
 
 	
-	<a href="/2020/04/22/%E7%BA%BF%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-04-22T05:20:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
+	<a href="/2020/04/22/%E9%9B%86%E5%90%88/" class="archive-article-date">
+  	<time datetime="2020-04-22T05:36:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
 </a>
 	
 	<!-- 需要添加的位置 -->
@@ -211,7 +211,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
+        <span class="post-count">2.7k字</span>
       </span>
     </span>
 
@@ -220,7 +220,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
+        <span class="post-count">10分</span>
       </span>
     </span>
 </div>
@@ -237,37 +237,114 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="并发访问问题"><a href="#并发访问问题" class="headerlink" title="并发访问问题"></a>并发访问问题</h2><p>在代码中，如果有多个线程，同时去访问一段相关的代码或者一个共享的数据，那么这时候就可能出现并发访问的问题。</p>
-<p>经常会这样进行描述：<br>        例如：一个方法，在多线程并发访问的环境下，是否有线程安全的问题<br>        例如：一个共享数据，在多线程并发访问的环境下，是否有线程安全的问题</p>
-<p>如果一段代码，在多线程并发访问的环境下，是线程安全的，那么这段代码就称为【线程安全】的代码</p>
-<p>如果一段代码，在多线程并发访问的环境下，不是线程安全的，那么这段代码就称为【非线程安全】的代码</p>
-<p>例如：之前学习的ArrayList和LinkedList在多线程环境下，对集合中的数据进行操作的代码，是【非线程安全】代码，之前学习的Vector在多线程环境下，对集合中的数据进行操作的代码，是【线程安全】代码</p>
-<p><code>注意，产生并发访问问题最核心的原因在于，多个线程同时方法了一个【共享的数据】</code></p>
-<h4 id="代码中的哪些数据是【共享数据】"><a href="#代码中的哪些数据是【共享数据】" class="headerlink" title="代码中的哪些数据是【共享数据】"></a>代码中的哪些数据是【共享数据】</h4><p>数据都是使用变量接收的，所以只要看变量就可以了</p>
-<h5 id="1-方法中的局部变量"><a href="#1-方法中的局部变量" class="headerlink" title="1.方法中的局部变量"></a>1.方法中的局部变量</h5><p>【一定不是】共享数据，因为每次调用方法都会创建新的局部变量。</p>
-<h5 id="2-类中的非静态变量"><a href="#2-类中的非静态变量" class="headerlink" title="2.类中的非静态变量"></a>2.类中的非静态变量</h5><p>​    有可能是共享数据，也可是不是共享数据。<br>​    因为非静态变量是属于对象，每个对象中有这个非静态变量。所以最终得看代码中多个线程操作的这个非静态变量是不是同一个对象中的。</p>
-<h5 id="3-类中的静态变量"><a href="#3-类中的静态变量" class="headerlink" title="3.类中的静态变量"></a>3.类中的静态变量</h5><p>【一定是】共享数据，因为静态变量只有一份，所以对象共享的。</p>
-<h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><p>使用线程同步的方式，可以把原本“<strong>非线程安全</strong>”的代码，变成“<strong>线程安全</strong>”的代码。</p>
-<p>一个线程t1调用一个代码test方法，操作了一个变量a，另一个线程t2也调用了这个test方法，方法中也操作了这个变量，并且这个变量a还是t1和t2俩个线程共享的数据,因为在t1操作变量a的期间，t2也能操作这个变量a，那么这个变量a的值就变量无法预估，完全是根据t1和t2的随机抢夺cpu执行的情况来定的，那么这个test方法中的代码就是在多线程环境下非线程安全的代码。</p>
-<p>如果能让t1线程和t2线程，按照顺序依次的调用test方法来对变量a进程操作，那么就能保证t1线程在调用test方法操作变量a的时候，t2线程不会对变量a进行操作的，那么这时候无论t1线程在调用test方法操作变量a的期间，还是t2线程操作a的期间，都是线程安全的。因为一个线程在操作数据的时候，没有其他线程来捣乱。</p>
-<p>可以使用<code>synchronized</code>关键字来实现线程同步的效果。线程同步就是一块代码本来是多线程并发访问的（同时争夺执行权去执行代码）然后变成一个线程按照顺序依次访问。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zzb.day44;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest6</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest6 test = <span class="keyword">new</span> ThreadTest6();</span><br><span class="line">        Runnable r = test.<span class="keyword">new</span> MyRun();</span><br><span class="line"></span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(r,<span class="string">"t1"</span>);</span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(r,<span class="string">"\t t2"</span>);</span><br><span class="line"></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRun</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">5</span>;j++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">"：i="</span>+i);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="集合框架的总结"><a href="#集合框架的总结" class="headerlink" title="集合框架的总结"></a>集合框架的总结</h1><h3 id="数组与集合的对比"><a href="#数组与集合的对比" class="headerlink" title="数组与集合的对比"></a>数组与集合的对比</h3><p>数组：之前使用数组存储数据</p>
+<pre><code>数组只能存同意类型的数据
 
-<h3 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h3><p>可以使用synchronized关键字来修饰方法，也可以来修饰代码块。</p>
-<p>synchronized可以代码块进行加锁，锁的是这个代码中的代码，加锁之后这个代码块中的代码只能让当前线程来执行，其他线程是不允许进来执行的，除非当前线程把这个代码块执行完了或者把锁给释放了，其他线程才有机会进来执行。</p>
-<p>使用synchronized关键字修饰代码快之后，需要指定一个对象来充当这把锁，把代码块中的代码给锁住。只有拿到这把锁的线程才有权利去执行这个加锁的代码块。</p>
-<p>这个时候一个线程想去执行加锁的代码块需要<strong>两个条件</strong>：</p>
-<ol>
-<li>线程抢夺到cp时间片的执行权。</li>
-<li>线程要拿到代码块上的这一把锁。</li>
-</ol>
-<p>这把锁就是允许进入到这个代码块的通行证。</p>
-<p>需要使用哪一个对象来充当这把锁，放置到加锁的代码块上面，作为可以进入到代码块中执行代码的通行证?</p>
-<p>可以使用java中的任何一个对象，来当做这把锁。但是如果想在多个线程执行代码的时候，达到线程同步的效果，那么就需要让这多个线程先去争取synchronized关键字所指定的对象，而这个对象就是充当了这把锁。</p>
-<p>使用synchronized关键来修饰类中的[<strong>非静态方法</strong>] 的时候，默认是使用<code>this对象</code>来当做这一把锁<br>使用synchronized关键来修饰类中的[ <strong>静态方法</strong>]的时候，默认是使用<code>当前类的Class对象</code>来当做这一把锁</p>
-<p>使用synchronized关键来修饰方法中的一个<strong>代码块</strong>，那么这时候需要我们<code>自己手动指定一个对象</code>来当做这个一把锁。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest7</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ThreadTest7 t = <span class="keyword">new</span> ThreadTest7();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//final NumTest num = new NumTest();</span></span><br><span class="line"></span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(<span class="string">"t1"</span>) &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                NumTest.test3();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(<span class="string">"\t t2"</span>) &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                NumTest.test4();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">NumTest</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> a;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认使用this来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认使用this来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认使用当【前类的Class对象】来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="comment">//每个类型的Class对象都是【有且只有一个】，并且这个对象是在类加载的时候自动生成。</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//默认使用当【前类的Class对象】来充当这个把锁，锁的是代码块中的代码</span></span><br><span class="line">        <span class="comment">//每个类型的Class对象都是【有且只有一个】，并且这个对象是在类加载的时候自动生成。</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String name = Thread.currentThread().getName();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">                System.out.println(name+<span class="string">": a = "</span>+a);</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+数组长度一旦确定不能改变
 
+数组对象中基本没有可用调用的方法来操作数组
+
+数组类型是使用 已有的类型+[] 组合而成</code></pre><p>集合：现在使用集合存储数据</p>
+<pre><code> 集合中能存储任意类型的对象
+
+ 集合的长度可以自动增长
+
+ 集合对象本身有很多方法可以调用，来操作集合中的数据
+
+ 集合是由API中定义好的接口和实现类组成的集合框架
+
+同时，集合框架中还有很多不同特点的集合可以选择使用</code></pre><h3 id="Collection和Map是集合框架中的俩大类型"><a href="#Collection和Map是集合框架中的俩大类型" class="headerlink" title="Collection和Map是集合框架中的俩大类型"></a>Collection和Map是集合框架中的俩大类型</h3><h4 id="Collection类型的集合："><a href="#Collection类型的集合：" class="headerlink" title="Collection类型的集合："></a>Collection类型的集合：</h4><h5 id="1-可以使用Iterator迭代器"><a href="#1-可以使用Iterator迭代器" class="headerlink" title="1.可以使用Iterator迭代器"></a>1.可以使用Iterator迭代器</h5><pre><code>因为Collection接口继承了Iterable接口</code></pre><h5 id="2-直接把数据单独存放到集合中即可"><a href="#2-直接把数据单独存放到集合中即可" class="headerlink" title="2.直接把数据单独存放到集合中即可"></a>2.直接把数据单独存放到集合中即可</h5><h5 id="3-Collection接口有俩个常用的子接口"><a href="#3-Collection接口有俩个常用的子接口" class="headerlink" title="3.Collection接口有俩个常用的子接口"></a>3.Collection接口有俩个常用的子接口</h5><pre><code>List：有序可重复
+Set：无序不可重复
+        Set下面有一个子接口SortedSet，允许用户给集合中的元素进行排序</code></pre><h5 id="4-List接口常用的实现类"><a href="#4-List接口常用的实现类" class="headerlink" title="4.List接口常用的实现类"></a>4.List接口常用的实现类</h5><pre><code>ArrayList：数组实现，通过下标访问效率高，在集合的中间位置插入数据效率低。
+
+LinkedList：链表实现，通过下标访问效率低，在集合的中间位置插入数据效率高。
+
+Vector：线程安全的集合。</code></pre><h5 id="5-Set接口常用的实现类"><a href="#5-Set接口常用的实现类" class="headerlink" title="5.Set接口常用的实现类"></a>5.Set接口常用的实现类</h5><pre><code>HashSet：内部调用HashMap来实现功能。
+
+    无序：需要使用数据的哈希值来存放数据
+    不可重复：根据对象的hashCode和equals方法来确定对象是否重复
+
+    哈希值不同，俩个对象就一定不同。
+    哈希值相同，俩个对象有可能相同，也能不同，这时候再使用equals进一步确定是否相同。
+
+TreeSet（实现的是SortedSet接口，SortedSet继承了Set接口）
+
+            内部调用TreeMap来实现功能。
+            可以给存储到集合中的元素见排序。
+
+自然排序：
+
+    1、只要对象实现了Comparable接口，对象中就一定一个compareTo方法，该方法可以比较俩个对象的大小。
+
+    2、通过方法的返回值是正数、负数、零来确定对象的大小或者相等。
+
+    3、TreeSet集合使用元素的compareTo方法比较出俩个对的大小后，就可以从小到大给对象进行排序了
+
+客户化排序
+
+    1、可以在创建TreeSet集合的时候，在构造器的参数中，传一个比较器的对象Comparator。
+    2、使用这个比较器，也可以比较出集合中俩个对象之间的大小。
+    3、这个时候即使对象没有实现Comparable接口也是可以比较的，因为这个比较器。
+    4、比较得出大小后，TreeSet依然可以从小到大给元素进行排序。</code></pre><h4 id="Map类型的集合："><a href="#Map类型的集合：" class="headerlink" title="Map类型的集合："></a>Map类型的集合：</h4><h5 id="1-不能使用Iterator迭代器"><a href="#1-不能使用Iterator迭代器" class="headerlink" title="1.不能使用Iterator迭代器"></a>1.不能使用Iterator迭代器</h5><pre><code>Map接口没有继承Iterable接口</code></pre><h5 id="2-需要使用key-value的方式来存放数据"><a href="#2-需要使用key-value的方式来存放数据" class="headerlink" title="2.需要使用key-value的方式来存放数据"></a>2.需要使用key-value的方式来存放数据</h5><h5 id="3-Map下面有一个常用的子接口SortedMap"><a href="#3-Map下面有一个常用的子接口SortedMap" class="headerlink" title="3.Map下面有一个常用的子接口SortedMap"></a>3.Map下面有一个常用的子接口SortedMap</h5><h5 id="4-Map接口的实现类"><a href="#4-Map接口的实现类" class="headerlink" title="4.Map接口的实现类"></a>4.Map接口的实现类</h5><p> HashMap：通过key-value存储数据<br>        key不能重复，如果重复会覆盖之前的数据，value可以重复，需要保证key值无序不可重复。</p>
+<pre><code>其实HashSet的无序不可重复就是利用了HashMap中的key的这一个特点来实现的。
+
+key值是无序：需要使用数据的哈希值来存放数据
+
+key值是不可重复的：根据对象的hashCode和equals方法来确定对象是否重复
+
+哈希值不同，俩个对象就一定不同。
+哈希值相同，俩个对象有可能相同，也能不同，这时候再使用equals进一步确定是否相同。Hashtable 实现了Map接口，它的效果和Vector类似，都是线程安全的集合。</code></pre><h5 id="5-SortedMap接口的实现类"><a href="#5-SortedMap接口的实现类" class="headerlink" title="5.SortedMap接口的实现类"></a>5.SortedMap接口的实现类</h5><p>TreeMap：可以给key值进行排序:</p>
+<pre><code>1、自然排序    
+
+只要对象实现了Comparable接口，对象中就一定一个compareTo方法，该方法可以比较俩个对象的大小。通过方法的返回值是正数、负数、零来确定对象的大小或者相等。TreeMap集合中的key使用对象中的compareTo方法比较出俩个对的大小后，就可以从小到大给key进行排序了。
+
+2、客户化排序
+
+可以在创建TreeSet集合的时候，在构造器的参数中，传一个比较器的对象Comparator。使用这个比较器，也可以比较出集合中俩个对象之间的大小。这个时候即使对象没有实现Comparable接口也是可以比较的，因为这个比较器。比较得出大小后，TreeMap依然可以从小到大给key进行排序。</code></pre><h4 id="在集合中，掌握几个核心："><a href="#在集合中，掌握几个核心：" class="headerlink" title="在集合中，掌握几个核心："></a>在集合中，掌握几个核心：</h4><h5 id="1-怎么利用接口和实现类创建出集合对象"><a href="#1-怎么利用接口和实现类创建出集合对象" class="headerlink" title="1.怎么利用接口和实现类创建出集合对象"></a>1.怎么利用接口和实现类创建出集合对象</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collection c = <span class="keyword">new</span> List接口或者Set接口的实现类</span><br><span class="line">   List list  = <span class="keyword">new</span> List接口的实现类（ArrayList Linked Vector）</span><br><span class="line">   Set  set   = <span class="keyword">new</span> set接口的实现类（HashSet TrjavaeeSet）</span><br><span class="line"></span><br><span class="line">   Map map = <span class="keyword">new</span> Map接口的实现类或者SortedMap接口实现类</span><br><span class="line">   HashMap TreeMap HashTable</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-怎么往集合中添加数据"><a href="#2-怎么往集合中添加数据" class="headerlink" title="2.怎么往集合中添加数据"></a>2.怎么往集合中添加数据</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Collection类型集合 add方法</span><br><span class="line">Map类型集合 put方法</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-怎么从集合中删除数据"><a href="#3-怎么从集合中删除数据" class="headerlink" title="3.怎么从集合中删除数据"></a>3.怎么从集合中删除数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remove方法</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-怎么在集合中查找数据"><a href="#4-怎么在集合中查找数据" class="headerlink" title="4.怎么在集合中查找数据"></a>4.怎么在集合中查找数据</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list类型集合 可以实现下标查找数据 get方法</span><br><span class="line">set类型集合  比较麻烦，没有下标，可以从集合中一个一个拿出数据对比，看是否是自己想查找的数据。</span><br><span class="line">Map类型集合，可以使用key直接获取到对应的value</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-怎么循环遍历集合拿到每一个元素"><a href="#5-怎么循环遍历集合拿到每一个元素" class="headerlink" title="5.怎么循环遍历集合拿到每一个元素"></a>5.怎么循环遍历集合拿到每一个元素</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Collection类型的集合都可以使用迭代器来循环拿到每个数据</span><br><span class="line"></span><br><span class="line">List类型的集合除了迭代器的方式之外，还可以<span class="keyword">for</span>循环结合下标的方式拿出每个数据</span><br><span class="line"></span><br><span class="line">Map类型的集合</span><br><span class="line">    keySet方法		取出所有key值</span><br><span class="line">    values方法		取出所有value值</span><br><span class="line">    entrySet方法	    取出所有的键值对</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-每种集合的特点"><a href="#6-每种集合的特点" class="headerlink" title="6.每种集合的特点"></a>6.每种集合的特点</h5><h5 id="7-常用集合内部的实现方式"><a href="#7-常用集合内部的实现方式" class="headerlink" title="7.常用集合内部的实现方式"></a>7.常用集合内部的实现方式</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通用</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showCollection</span><span class="params">(Collection c)</span></span>&#123;</span><br><span class="line">    Iterator it = c.iterator();</span><br><span class="line">    <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">        Object obj = it.next();</span><br><span class="line">        System.out.println(obj);		</span><br><span class="line">    &#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Collection类型都支持 jdk1.5以上</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">foreach</span><span class="params">(Collection c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(Object obj:c)&#123;</span><br><span class="line">        System.out.println(obj);	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showMapEntry</span><span class="params">(Map map)</span></span>&#123;</span><br><span class="line">    Set set = map.entrySet();</span><br><span class="line">    Iterator it = set.iterator();</span><br><span class="line">    System.out.println(<span class="string">"\n 遍历Map中的entry开始"</span>);</span><br><span class="line">    <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">        Object obj = it.next();</span><br><span class="line">        Entry entry = (Entry) obj;</span><br><span class="line">        Object key = entry.getKey();</span><br><span class="line">        Object value = entry.getValue();</span><br><span class="line">        System.out.println(<span class="string">"\tkey="</span>+key+<span class="string">",value="</span>+value);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">" 遍历Map中的entry结束"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="List独有"><a href="#List独有" class="headerlink" title="List独有"></a>List独有</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List独有 List有下标</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showList</span><span class="params">(List c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;c.size();i++)&#123;</span><br><span class="line">        System.out.println(c.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型Generics"><a href="#泛型Generics" class="headerlink" title="泛型Generics"></a>泛型Generics</h3><p>泛型是JDK1.5及以上才可以使用的特性和语法，它的本质是类型参数化（Paramterized by type）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在声明一个类或者接口或者方法的时候，需要涉及到一个问题：需要给属性确定一个类型，或者需要给方法的返回值确定一个类型，或者需要给方法的参数确定一个类型。</p>
+<p>之前，我们定义类或者接口或者方法的时候，上面所描述的类型都是直接写死，不会变化的。</p>
+<p>现在，我们希望这些类型都不写死，在将来使用的时候，可以通过传参的方式，最后确定到底需要这些属性、方法的值、方法的参数是声明类型。</p>
+<h4 id="之前的写法："><a href="#之前的写法：" class="headerlink" title="之前的写法："></a>之前的写法：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Long id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="现在的写法：（泛型）"><a href="#现在的写法：（泛型）" class="headerlink" title="现在的写法：（泛型）"></a>现在的写法：（泛型）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="comment">//属性id的类型是不确定，需要将来使用Student类的时候，通过传参方式再确定T是声明类型</span></span><br><span class="line">	<span class="keyword">private</span> T id;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student &lt;Long&gt; s1 = <span class="keyword">new</span> Student&lt;Long&gt;();</span><br><span class="line">Student&lt;Integer&gt; s2 = <span class="keyword">new</span> Student&lt;Integer&gt;();</span><br><span class="line">Student&lt;String&gt; s3 = <span class="keyword">new</span> Student&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+
+<h4 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h4><p>可以让编译器帮我们做类型安全检查</p>
+<p>不需要做类型的强制转换，也就不会有类型的转换异常了</p>
+<p>提供代码的可读性</p>
+<h3 id="泛型类、泛型接口、泛型方法"><a href="#泛型类、泛型接口、泛型方法" class="headerlink" title="泛型类、泛型接口、泛型方法"></a>泛型类、泛型接口、泛型方法</h3><p>如果泛型参数定义在类上面，匿名这个类就是一个泛型类。</p>
+<p>如果泛型参数定义在接口上面。那么这个接口就是一个泛型接口。</p>
+<p>如果泛型参数定义在方法上面，那么这个方法就是一个泛型方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//泛型类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span>&lt;<span class="title">T</span>&gt;</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//泛型接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Action</span>&lt;<span class="title">T</span>&gt;</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//泛型方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span>&lt;T&gt; t <span class="title">test</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：&lt;&gt;就是用来声明泛型</p>
+<h3 id="使用泛型后的子类型问题"><a href="#使用泛型后的子类型问题" class="headerlink" title="使用泛型后的子类型问题"></a>使用泛型后的子类型问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类型的引用，指向子类对象</span></span><br><span class="line">Object o = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Object[]类型兼容所有的[引用]类型类型</span></span><br><span class="line"><span class="comment">//int[] 是基本类型数组</span></span><br><span class="line"><span class="comment">//Object[] arr = new int[1];</span></span><br><span class="line"><span class="comment">//arr可以指向任何引用类型数组对象</span></span><br><span class="line">Object[] arr = <span class="keyword">new</span> Integer[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//错误: 不兼容的类型:</span></span><br><span class="line"><span class="comment">//       ArrayList&lt;Integer&gt;无法转换为ArrayList&lt;Object&gt;</span></span><br><span class="line"><span class="comment">//ArrayList&lt;Object&gt; list = new ArrayList&lt;Integer&gt;();</span></span><br><span class="line"><span class="comment">//等号两边所指定的泛型类型一定是一致的</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然Integer是Object的子类型，但是ArrayList<Integer> 和ArrayList<Object> 之间没有子父类关系，就是两个没有关系的不同类型。类可以使用多态，泛型必须保持一致。</p>
+<h3 id="通配符-？"><a href="#通配符-？" class="headerlink" title="通配符 ？"></a>通配符 ？</h3><h4 id="格式："><a href="#格式：" class="headerlink" title="格式："></a>格式：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">collection&lt;?&gt; c = <span class="keyword">new</span> ArrayList&lt;任意类型&gt;();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">(Collection&lt;Integer&gt; c)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">(Collection&lt;String&gt; c)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">(Collection&lt;Object&gt; c)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">test1方法[只能]接收泛型是Integer类型的集合对象</span></span><br><span class="line"><span class="comment">test2方法[只能]接收泛型是String类型的集合对象</span></span><br><span class="line"><span class="comment">test3方法[只能]接收泛型是Object类型的集合对象</span></span><br><span class="line"><span class="comment">由于泛型的类型之间没有多态，所以=号俩边的泛型类型必须一致。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">(Collection&lt;?&gt; c)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">注意，这时候test4方法中的参数类型，使用了泛型，并且使用</span></span><br><span class="line"><span class="comment">问号来表示这个泛型的类型，这个问号就是通配符，可以匹配所</span></span><br><span class="line"><span class="comment">以的泛型类型,test4方法可以接收泛型是任意类型的集合对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">t.test4(<span class="keyword">new</span> ArrayList&lt;String&gt;());</span><br><span class="line">t.test4(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</span><br><span class="line">t.test4(<span class="keyword">new</span> ArrayList&lt;Object&gt;());</span><br></pre></td></tr></table></figure>
+
+<h4 id="通配符所带来的问题"><a href="#通配符所带来的问题" class="headerlink" title="通配符所带来的问题"></a>通配符所带来的问题</h4><p>变量c所声明的类型是Collection，同时泛型类型是？，编译器也不知道这个？将来是什么类型。所以编译器不允许使用变量c来向集合中添加新数据。（null可以进行添加的）</p>
 
       
 	
@@ -379,7 +456,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zouzebin.github.io/2020/04/22/%E7%BA%BF%E7%A8%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zouzebin.github.io/2020/04/22/%E9%9B%86%E5%90%88/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -393,15 +470,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/22/%E9%9B%86%E5%90%88/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/22/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          集合
+          Hello World
         
       </div>
     </a>
   
+  
+    <a href="/2020/04/22/%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">线程</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
